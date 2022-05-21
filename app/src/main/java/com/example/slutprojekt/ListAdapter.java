@@ -1,7 +1,9 @@
 package com.example.slutprojekt;
 
-import android.content.Context;
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -31,7 +34,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterVie
 
     @Override
     public void onBindViewHolder(@NonNull ListAdapterViewHolder holder, int position) {
-        holder.name.setText(items.get(position).getName());
+        holder.name.setText(items.get(position).name);
         holder.item = items.get(position);
     }
 
@@ -42,20 +45,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterVie
 
     public class ListAdapterViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
-        private Button details;
         private Item item;
         public ListAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.item_name);
-            details = itemView.findViewById(R.id.details_button);
-            details.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                    intent.putExtra("item", (Parcelable) item);
-                    startActivity(intent);
-                }
-            });
         }
     }
 
