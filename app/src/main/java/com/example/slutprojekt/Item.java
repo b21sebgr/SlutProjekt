@@ -1,7 +1,8 @@
 package com.example.slutprojekt;
 
 import java.math.BigDecimal;
-import com.google.gson.anotations.SerializedName;
+
+import com.google.gson.annotations.SerializedName;
 
 public class Item {
     @SerializedName("Name")

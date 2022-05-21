@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -46,15 +47,11 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             }
         });
 
-        refresh();
-
-        items = new ArrayList<Item>();
-        items.add(new Item("test", "1000", 10));
-
         listView = findViewById(R.id.list_view);
-        ListAdapter adapter = new ListAdapter(items);
+        ListAdapter adapter = new ListAdapter(new ArrayList<Item>());
         listView.setAdapter(adapter);
         listView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        refresh();
     }
 
     public void refresh() {
