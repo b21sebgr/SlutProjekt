@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
+
+    private ListAdapter adapter;
 
     private Button aboutButton;
     private Button refreshButton;
@@ -48,21 +51,26 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         });
 
         listView = findViewById(R.id.list_view);
-        ListAdapter adapter = new ListAdapter(new ArrayList<Item>());
+        adapter = new ListAdapter(new ArrayList<Item>());
         listView.setAdapter(adapter);
         listView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         refresh();
     }
 
     public void refresh() {
+        Log.d("abcdefg", "där");
+        //noinspection deprecation
         new JsonTask(MainActivity.this).execute("https://mobprog.webug.se/json-api?login=b21sebgr");
     }
 
     @Override
     public void onPostExecute(String json) {
+        Log.d("abcdefg", "här");
         Gson gson = new Gson();
         Type type = new TypeToken<List<Item>>() {}.getType();
         List<Item> items = gson.fromJson(json, type);
-        listView.getAdapter().notifyDataSetChanged();
+        if(items != null) {
+            adapter.setContentList(items);
+        }
     }
 }
