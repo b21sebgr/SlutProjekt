@@ -5,11 +5,10 @@ import java.math.BigDecimal;
 import com.google.gson.annotations.SerializedName;
 
 public class Item {
-    @SerializedName("Name")
     public String name;
-    @SerializedName("Cost")
+    @SerializedName("cost")
     public BigDecimal averagePrice;
-    @SerializedName("Size")
+    @SerializedName("size")
     public int itemCount;
 
     public Item(String name, String averagePrice, int itemCount) {

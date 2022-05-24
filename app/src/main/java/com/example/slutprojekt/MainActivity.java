@@ -65,12 +65,11 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("abcdefg", "här");
+        Log.d("abcdefg", json);
         Gson gson = new Gson();
         Type type = new TypeToken<List<Item>>() {}.getType();
         List<Item> items = gson.fromJson(json, type);
-        if(items != null) {
-            adapter.setContentList(items);
-        }
+        Log.d("abcdefg", items.size()+"");
+        adapter.setContentList(items);
     }
 }
