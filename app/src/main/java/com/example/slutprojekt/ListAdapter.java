@@ -35,7 +35,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterVie
     @Override
     public void onBindViewHolder(@NonNull ListAdapterViewHolder holder, int position) {
         holder.name.setText(items.get(position).name);
-        holder.item = items.get(position);
     }
 
     @Override
@@ -45,7 +44,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterVie
 
     public class ListAdapterViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
-        private Item item;
         public ListAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.item_name);
