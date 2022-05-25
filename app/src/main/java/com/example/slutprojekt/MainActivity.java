@@ -58,18 +58,15 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     }
 
     public void refresh() {
-        Log.d("abcdefg", "där");
         //noinspection deprecation
         new JsonTask(MainActivity.this).execute("https://mobprog.webug.se/json-api?login=b21sebgr");
     }
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("abcdefg", json);
         Gson gson = new Gson();
         Type type = new TypeToken<List<Item>>() {}.getType();
         List<Item> items = gson.fromJson(json, type);
-        Log.d("abcdefg", items.size()+"");
         adapter.setContentList(items);
     }
 }
